@@ -1,0 +1,211 @@
+<!-- ============================================
+     PREMIUM NAVIGATION — Fixed, glass on scroll
+     ============================================ -->
+<nav class="hero-nav" id="heroNav" aria-label="Navegación principal">
+  <div class="container hero-nav__inner">
+    <a href="#inicio" class="hero-nav__brand" aria-label="FX-BSC Inicio">
+      <span class="hero-nav__monogram" aria-hidden="true">
+        <svg viewBox="0 0 40 40" width="36" height="36" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="1" y="1" width="38" height="38" rx="10" stroke="url(#monoStroke)" stroke-width="1.2"/>
+          <path d="M12 27 V13 H22" stroke="url(#monoStroke)" stroke-width="2" stroke-linecap="round"/>
+          <path d="M12 20 H20" stroke="url(#monoStroke)" stroke-width="2" stroke-linecap="round"/>
+          <path d="M26 13 L28 27" stroke="url(#monoStroke)" stroke-width="2" stroke-linecap="round"/>
+          <defs>
+            <linearGradient id="monoStroke" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#e8c66c"/>
+              <stop offset="1" stop-color="#9c7d1f"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </span>
+      <span class="hero-nav__wordmark">
+        <span class="hero-nav__brand-name">FX-BSC</span>
+        <span class="hero-nav__brand-tag">Academia de Trading</span>
+      </span>
+    </a>
+
+    <ul class="hero-nav__menu" role="menubar">
+      <li role="none"><a role="menuitem" href="#inicio" class="hero-nav__link is-active">Inicio</a></li>
+      <li role="none"><a role="menuitem" href="#cursos" class="hero-nav__link">Cursos</a></li>
+      <li role="none"><a role="menuitem" href="#servicios" class="hero-nav__link">Servicios</a></li>
+      <li role="none"><a role="menuitem" href="#comunidad" class="hero-nav__link">Comunidad</a></li>
+      <li role="none"><a role="menuitem" href="#faq" class="hero-nav__link">FAQ</a></li>
+    </ul>
+
+    <div class="hero-nav__actions">
+      <a href="https://t.me/Fxbasic_entradastrading" target="_blank" rel="noopener" class="btn btn-primary hero-nav__cta" aria-label="Únete al canal de señales">
+        ÚNETE
+        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M5 12h14M13 5l7 7-7 7"/>
+        </svg>
+      </a>
+
+      <button class="hero-nav__burger" id="heroBurger" aria-label="Abrir menú" aria-expanded="false" aria-controls="heroMobileMenu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile slide-down menu -->
+  <div class="hero-nav__mobile" id="heroMobileMenu" aria-hidden="true">
+    <a href="#inicio" class="hero-nav__mobile-link">Inicio</a>
+    <a href="#cursos" class="hero-nav__mobile-link">Cursos</a>
+    <a href="#servicios" class="hero-nav__mobile-link">Servicios</a>
+    <a href="#comunidad" class="hero-nav__mobile-link">Comunidad</a>
+    <a href="#faq" class="hero-nav__mobile-link">FAQ</a>
+    <a href="https://t.me/Fxbasic_entradastrading" target="_blank" rel="noopener" class="btn btn-primary hero-nav__mobile-cta">ÚNETE</a>
+  </div>
+</nav>
+
+<!-- ============================================
+     HERO SECTION — Luxury Above-the-Fold
+     ============================================ -->
+<section class="hero" id="inicio" aria-labelledby="heroTitle">
+  <!-- Decorative background layers -->
+  <div class="bg-grid hero__grid" aria-hidden="true"></div>
+  <div class="bg-glow bg-glow-gold hero__glow hero__glow--a" aria-hidden="true"></div>
+  <div class="bg-glow bg-glow-cyan hero__glow hero__glow--b" aria-hidden="true"></div>
+
+  <!-- Decorative sparkline behind hero -->
+  <svg class="hero__sparkline" viewBox="0 0 1440 400" preserveAspectRatio="none" aria-hidden="true">
+    <defs>
+      <linearGradient id="sparkLine" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="rgba(212,175,55,0)"/>
+        <stop offset="0.5" stop-color="rgba(212,175,55,0.55)"/>
+        <stop offset="1" stop-color="rgba(212,175,55,0)"/>
+      </linearGradient>
+      <linearGradient id="sparkFill" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="rgba(212,175,55,0.18)"/>
+        <stop offset="1" stop-color="rgba(212,175,55,0)"/>
+      </linearGradient>
+    </defs>
+    <path d="M0,260 C120,240 180,180 260,200 C340,220 400,300 500,280 C600,260 660,160 760,180 C860,200 920,280 1020,250 C1120,220 1200,140 1300,170 C1380,194 1440,210 1440,210 L1440,400 L0,400 Z" fill="url(#sparkFill)"/>
+    <path d="M0,260 C120,240 180,180 260,200 C340,220 400,300 500,280 C600,260 660,160 760,180 C860,200 920,280 1020,250 C1120,220 1200,140 1300,170 C1380,194 1440,210 1440,210" fill="none" stroke="url(#sparkLine)" stroke-width="1.6"/>
+  </svg>
+
+  <div class="container hero__container">
+    <!-- LEFT — Content -->
+    <div class="hero__content">
+      <span class="eyebrow reveal" data-delay="0">Aprende desde cero</span>
+
+      <h1 id="heroTitle" class="hero__title display reveal" data-delay="80">
+        FX-BSC <br/>
+        Academia de <span class="text-gold">Trading</span>
+      </h1>
+
+      <p class="hero__lede text-soft reveal" data-delay="160">
+        Formamos traders desde cero con una metodología clara y práctica. Miyerlay, fundadora de FX-BSC, te guía en el camino para operar los mercados financieros con disciplina y resultados reales.
+      </p>
+
+      <ul class="hero__features reveal" data-delay="220" role="list">
+        <li class="hero__feature">
+          <span class="hero__check" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12l4 4 10-10"/>
+            </svg>
+          </span>
+          <span>24/7 Soporte</span>
+        </li>
+        <li class="hero__feature">
+          <span class="hero__check" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12l4 4 10-10"/>
+            </svg>
+          </span>
+          <span>Confianza</span>
+        </li>
+        <li class="hero__feature">
+          <span class="hero__check" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12l4 4 10-10"/>
+            </svg>
+          </span>
+          <span>Clases Flexibles</span>
+        </li>
+      </ul>
+
+      <div class="hero__ctas reveal" data-delay="300">
+        <a href="https://t.me/Fxbasic_entradastrading" target="_blank" rel="noopener" class="btn btn-primary hero__cta" aria-label="Únete al canal de señales gratis">
+          CANAL DE SEÑALES GRATIS
+          <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14M13 5l7 7-7 7"/>
+          </svg>
+        </a>
+        <span class="badge hero__live">
+          <span class="badge-dot" aria-hidden="true"></span>
+          En vivo · Señales diarias
+        </span>
+      </div>
+
+    </div>
+
+    <!-- RIGHT — Portrait + floating cards -->
+    <aside class="hero__visual" aria-label="Miyerlay, fundadora de FX-BSC">
+      <div class="hero__frame reveal" data-delay="120">
+        <div class="hero__frame-glow" aria-hidden="true"></div>
+        <div class="hero__frame-ring" aria-hidden="true"></div>
+
+        <img
+          class="hero__portrait"
+          src="https://www.fx-bsc.com/wp-content/uploads/2025/08/miyerlay1.png"
+          alt="Miyerlay, fundadora de la academia FX-BSC"
+          loading="lazy"
+          decoding="async"
+          width="640"
+          height="780"
+        />
+
+        <!-- Floating chip — Cursos counter -->
+        <div class="hero__chip hero__chip--cursos" role="group" aria-label="Más de 15 cursos">
+          <div class="hero__chip-num text-gold">+15</div>
+          <div class="hero__chip-label">Cursos de trading</div>
+        </div>
+
+        <!-- Floating chip — Miembros (community avatars) -->
+        <div class="hero__chip hero__chip--members" role="group" aria-label="Más de 50 miembros">
+          <div class="hero__avatars" aria-hidden="true">
+            <img src="https://www.fx-bsc.com/wp-content/uploads/2025/08/Collage-of-a-diverse-group-of-laughing-entrepreneurs.png" alt="" loading="lazy" decoding="async"/>
+            <img src="https://www.fx-bsc.com/wp-content/uploads/2025/08/Collage-of-a-diverse-group-of-laughing-entrepreneurs.png" alt="" loading="lazy" decoding="async"/>
+            <img src="https://www.fx-bsc.com/wp-content/uploads/2025/08/Collage-of-a-diverse-group-of-laughing-entrepreneurs.png" alt="" loading="lazy" decoding="async"/>
+          </div>
+          <div class="hero__chip-text">
+            <strong>+50 miembros</strong>
+            <span>Comunidad activa</span>
+          </div>
+        </div>
+
+        <!-- Floating chip — Rating -->
+        <div class="hero__chip hero__chip--rating" role="group" aria-label="Calificación 5 estrellas">
+          <div class="hero__stars" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <div class="hero__chip-text">
+            <strong>5.0 valoración</strong>
+            <span>Estudiantes verificados</span>
+          </div>
+        </div>
+
+        <!-- Decorative mini chart card -->
+        <div class="hero__chip hero__chip--chart" aria-hidden="true">
+          <div class="hero__chip-row">
+            <span class="hero__chip-pair">XAU/USD</span>
+            <span class="hero__chip-pct up">+2.41%</span>
+          </div>
+          <svg viewBox="0 0 120 40" class="hero__minispark" preserveAspectRatio="none">
+            <path d="M0,30 L15,26 L28,28 L42,18 L58,22 L72,12 L88,16 L104,8 L120,10" fill="none" stroke="var(--c-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- Scroll indicator -->
+  <a href="#cursos" class="hero__scroll" aria-label="Desplazarse hacia abajo">
+    <span class="hero__scroll-label">Descubre más</span>
+    <span class="hero__scroll-mouse" aria-hidden="true"><span></span></span>
+  </a>
+</section>
