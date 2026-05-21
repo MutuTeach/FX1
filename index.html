@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FX-BSC | Academia de Trading — Miyerlay Murillo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: #06080f;
+      color: #E8EAF0;
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    :root {
+      --void:       #06080f;
+      --deep:       #0a0b10;
+      --surface:    #12141c;
+      --card:       #1a1d28;
+      --gold:       #F0B429;
+      --gold2:      #FFD700;
+      --gold-soft:  rgba(240,180,41,0.09);
+      --gold-border:rgba(240,180,41,0.22);
+      --emerald:    #00C853;
+      --em-border:  rgba(0,200,83,0.2);
+      --text:       #E8EAF0;
+      --text2:      #9BA3C0;
+      --text3:      #5A6180;
+      --serif:      'Playfair Display', Georgia, serif;
+      --sans:       'Inter', system-ui, sans-serif;
+      --mono:       'DM Mono', monospace;
+      --max:        1360px;
+    }
+
+    body::after {
+      content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 9999;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    .atmos { position: fixed; pointer-events: none; border-radius: 50%; filter: blur(140px); z-index: 0; }
+    .ag { width: 700px; height: 700px; background: radial-gradient(circle,#f0b429,transparent 70%); opacity: 0.05; top: -200px; right: -200px; }
+    .ae { width: 600px; height: 600px; background: radial-gradient(circle,#00c853,transparent 70%); opacity: 0.04; bottom: 0; left: -200px; }
+
+    body { cursor: none; }
+    #cd { position:fixed; width:6px; height:6px; background:var(--gold); border-radius:50%; pointer-events:none; z-index:10001; transform:translate(-50%,-50%); }
+    #cr { position:fixed; width:30px; height:30px; border:1px solid rgba(240,180,41,0.5); border-radius:50%; pointer-events:none; z-index:10000; transform:translate(-50%,-50%); transition:width .25s,height .25s,border-color .25s; }
+    .ch #cr { width:52px; height:52px; border-color:var(--gold); }
+
+    .container { max-width: var(--max); margin: 0 auto; padding: 0 48px; position: relative; z-index: 1; }
+    .chip { display:inline-flex; align-items:center; gap:8px; font-family:var(--mono); font-size:10px; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); border:1px solid var(--gold-border); padding:6px 14px; margin-bottom:24px; }
+    .chip::before { content:'▸'; }
+    .h-display { font-family:var(--serif); font-size:clamp(44px,7vw,92px); font-weight:900; line-height:.95; letter-spacing:-.03em; color:var(--text); }
+    .h-display em { font-style:italic; font-weight:400; color:var(--gold); }
+    .h-section { font-family:var(--serif); font-size:clamp(30px,4vw,56px); font-weight:700; line-height:1.05; letter-spacing:-.025em; color:var(--text); }
+    .h-section em { font-style:italic; font-weight:400; color:var(--gold); }
+    .body-md { font-size:16px; color:var(--text2); line-height:1.8; }
+    .btn-gold { display:inline-flex; align-items:center; gap:10px; background:linear-gradient(135deg,var(--gold),var(--gold2)); color:#06080f; font-family:var(--mono); font-size:12px; font-weight:500; letter-spacing:.12em; text-transform:uppercase; padding:18px 36px; border:none; cursor:pointer; transition:opacity .2s,transform .2s; clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,12px 100%,0 calc(100% - 12px)); }
+    .btn-gold:hover { opacity:.9; transform:translateY(-2px); }
+    .btn-frame { display:inline-flex; align-items:center; gap:10px; background:transparent; color:var(--text); font-family:var(--mono); font-size:12px; font-weight:400; letter-spacing:.12em; text-transform:uppercase; padding:17px 36px; border:1px solid rgba(232,234,240,.12); cursor:pointer; transition:border-color .2s,color .2s; }
+    .btn-frame:hover { border-color:var(--gold); color:var(--gold); }
+
+    .sr { opacity:0; transform:translateY(40px); transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1); }
+    .sr.in { opacity:1; transform:none; }
+    .sr-d1 { transition-delay:.1s; } .sr-d2 { transition-delay:.2s; } .sr-d3 { transition-delay:.3s; } .sr-d4 { transition-delay:.45s; }
+
+    nav { position:fixed; top:0; left:0; right:0; z-index:1000; padding:28px 0; transition:padding .3s,background .3s; }
+    nav.scrolled { padding:16px 0; background:rgba(6,8,15,.9); backdrop-filter:blur(24px); border-bottom:1px solid var(--gold-border); }
+    .nav-inner { display:flex; align-items:center; justify-content:space-between; }
+    .nav-logo { display:flex; align-items:center; gap:12px; }
+    .nav-mark { width:36px; height:36px; border:1px solid var(--gold-border); display:flex; align-items:center; justify-content:center; font-family:var(--serif); font-size:14px; font-weight:700; color:var(--gold); clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,0 100%); }
+    .nav-name { font-family:var(--serif); font-size:18px; font-weight:700; letter-spacing:-.01em; }
+    .nav-name span { color:var(--gold); }
+    .nav-links { display:flex; gap:36px; align-items:center; }
+    .nav-links a { font-family:var(--mono); font-size:10.5px; font-weight:400; letter-spacing:.14em; text-transform:uppercase; color:var(--text2); transition:color .2s; }
+    .nav-links a:hover { color:var(--gold); }
+    .nav-cta { font-family:var(--mono); font-size:10.5px; font-weight:500; letter-spacing:.14em; text-transform:uppercase; color:#06080f; background:var(--gold); padding:10px 22px; clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,0 100%); transition:background .2s; }
+    .nav-cta:hover { background:var(--gold2); }
+    .nav-mob { display:none; background:none; border:none; color:var(--text); cursor:pointer; font-size:22px; }
+    @media(max-width:768px){ .nav-links{display:none;} .nav-links.open{display:flex;flex-direction:column;gap:20px;position:absolute;top:100%;left:0;right:0;background:rgba(6,8,15,.96);backdrop-filter:blur(24px);padding:32px 48px;border-bottom:1px solid var(--gold-border);} .nav-mob{display:block;} }
+
+    .ticker { background:var(--surface); border-top:1px solid var(--gold-border); border-bottom:1px solid var(--gold-border); overflow:hidden; padding:13px 0; margin-top:88px; }
+    .tick-track { display:flex; animation:tickscroll 32s linear infinite; width:max-content; }
+    .tick-item { display:flex; align-items:center; gap:10px; padding:0 44px; font-family:var(--mono); font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--text3); white-space:nowrap; }
+    .tick-item b { color:var(--gold); }
+    .ts { color:var(--gold); opacity:.4; font-size:8px; }
+    @keyframes tickscroll { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+    .hero-wrap { display:grid; grid-template-columns:1.1fr .9fr; min-height:calc(100vh - 130px); align-items:center; padding:60px 0 80px; gap:60px; }
+    .hero-num { font-family:var(--mono); font-size:11px; letter-spacing:.2em; color:var(--text3); margin-bottom:32px; display:flex; align-items:center; gap:16px; }
+    .hero-num::after { content:''; flex:1; max-width:80px; height:1px; background:linear-gradient(to right,var(--text3),transparent); }
+    .hero-headline { margin-bottom:32px; }
+    .hero-sub { font-size:17px; color:var(--text2); line-height:1.8; max-width:500px; margin-bottom:48px; }
+    .hero-cta { display:flex; gap:16px; flex-wrap:wrap; margin-bottom:64px; }
+    .hero-stats { display:flex; gap:0; border:1px solid rgba(232,234,240,.07); }
+    .hs { padding:20px 28px; border-right:1px solid rgba(232,234,240,.07); }
+    .hs:last-child { border-right:none; }
+    .hs-v { font-family:var(--serif); font-size:26px; font-weight:700; color:var(--gold); line-height:1; }
+    .hs-l { font-family:var(--mono); font-size:9.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--text3); margin-top:4px; }
+
+    .hero-right { position:relative; }
+    .hero-img-wrap { position:relative; }
+    .hero-img-wrap::before { content:''; position:absolute; inset:0; z-index:1; background:linear-gradient(160deg,rgba(240,180,41,.06),transparent 50%); }
+    .hero-img-wrap img { width:100%; aspect-ratio:3/4; object-fit:cover; object-position:top; display:block; filter:saturate(.8) contrast(1.1); }
+    .hero-frame { position:absolute; top:-16px; right:-16px; bottom:16px; left:16px; border:1px solid var(--gold-border); z-index:-1; clip-path:polygon(0 0,calc(100% - 16px) 0,100% 16px,100% 100%,16px 100%,0 calc(100% - 16px)); }
+    .hf { position:absolute; z-index:2; background:rgba(6,8,15,.85); backdrop-filter:blur(16px); border:1px solid var(--gold-border); padding:16px 20px; }
+    .hf-tl { top:28px; left:-32px; }
+    .hf-br { bottom:52px; right:-32px; }
+    .hf-v { font-family:var(--serif); font-size:28px; font-weight:700; color:var(--gold); line-height:1; }
+    .hf-l { font-family:var(--mono); font-size:9.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--text2); margin-top:3px; }
+    @media(max-width:1024px){ .hero-wrap{grid-template-columns:1fr;min-height:unset;padding-top:100px;} .hero-right{max-width:460px;margin:0 auto;} .hf-tl{left:0;} .hf-br{right:0;} }
+
+    .sec { padding:100px 0; }
+    .sec-dark { background:var(--deep); }
+    .sec-surf { background:var(--surface); }
+    .sec-hd { margin-bottom:64px; }
+    .sec-hdc { text-align:center; max-width:680px; margin:0 auto 64px; }
+
+    .about-layout { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
+    .about-img-wrap { position:relative; }
+    .about-img { width:100%; aspect-ratio:1; object-fit:cover; object-position:top; filter:saturate(.75) contrast(1.1); }
+    .about-overlay { position:absolute; bottom:0; left:0; right:0; background:linear-gradient(to top,rgba(6,8,15,.92),transparent); padding:40px 28px 28px; }
+    .about-overlay p { font-family:var(--serif); font-size:16px; font-weight:400; font-style:italic; line-height:1.4; color:var(--text2); }
+    .about-quote { font-family:var(--serif); font-size:clamp(22px,2.5vw,34px); font-weight:400; font-style:italic; line-height:1.3; color:var(--text); margin-bottom:24px; }
+    .about-quote strong { font-style:normal; font-weight:700; color:var(--gold); }
+    .about-line { width:48px; height:2px; background:var(--gold); margin-bottom:24px; opacity:.6; }
+    .credentials { display:flex; flex-direction:column; gap:12px; margin-bottom:32px; }
+    .cred-item { display:flex; align-items:flex-start; gap:12px; font-size:14px; color:var(--text2); line-height:1.5; }
+    .cred-item::before { content:'▸'; color:var(--gold); flex-shrink:0; margin-top:2px; }
+    @media(max-width:768px){ .about-layout{grid-template-columns:1fr;gap:40px;} }
+
+    .vnt-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:rgba(232,234,240,.05); }
+    .vnt { background:var(--void); padding:48px 32px; position:relative; overflow:hidden; transition:background .3s; }
+    .vnt:hover { background:var(--surface); }
+    .vnt::after { content:attr(data-n); position:absolute; bottom:-10px; right:16px; font-family:var(--serif); font-size:120px; font-weight:900; color:var(--gold); opacity:.04; line-height:1; pointer-events:none; }
+    .vnt-icon { font-size:24px; margin-bottom:20px; }
+    .vnt-title { font-family:var(--serif); font-size:22px; font-weight:700; margin-bottom:12px; }
+    .vnt-desc { font-size:14px; color:var(--text2); line-height:1.7; }
+    @media(max-width:768px){ .vnt-grid{grid-template-columns:1fr;} }
+
+    .svc-list { display:flex; flex-direction:column; gap:1px; background:rgba(232,234,240,.04); }
+    .svc { display:grid; grid-template-columns:80px 1fr auto; align-items:center; gap:40px; background:var(--void); padding:44px 48px; transition:background .25s; border-left:2px solid transparent; }
+    .svc:hover { background:var(--surface); border-left-color:var(--gold); }
+    .svc-n { font-family:var(--serif); font-size:48px; font-weight:900; color:var(--gold); opacity:.2; line-height:1; }
+    .svc-title { font-family:var(--serif); font-size:28px; font-weight:700; margin-bottom:10px; }
+    .svc-desc { font-size:14px; color:var(--text2); line-height:1.7; max-width:540px; }
+    .svc-price { font-family:var(--mono); font-size:9.5px; letter-spacing:.2em; text-transform:uppercase; color:var(--emerald); border:1px solid var(--em-border); padding:6px 14px; white-space:nowrap; align-self:flex-start; }
+    .svc-img { width:160px; aspect-ratio:3/2; object-fit:cover; filter:saturate(.7) contrast(1.1); }
+    @media(max-width:1024px){ .svc{grid-template-columns:1fr;gap:20px;padding:32px;} .svc-n{font-size:32px;} .svc-img{width:100%;max-width:360px;} }
+
+    .stats-band { background:var(--surface); border-top:1px solid var(--gold-border); border-bottom:1px solid var(--gold-border); }
+    .stats-row { display:grid; grid-template-columns:repeat(3,1fr); }
+    .sc { padding:56px 36px; text-align:center; border-right:1px solid rgba(232,234,240,.06); }
+    .sc:last-child { border-right:none; }
+    .sc-n { font-family:var(--serif); font-size:56px; font-weight:900; color:var(--gold); line-height:1; }
+    .sc-l { font-family:var(--mono); font-size:10px; letter-spacing:.18em; text-transform:uppercase; color:var(--text3); margin-top:10px; }
+    @media(max-width:768px){ .stats-row{grid-template-columns:repeat(2,1fr);} }
+
+    .faq-cols { display:grid; grid-template-columns:1fr 2fr; gap:80px; align-items:start; }
+    .faq-aside { position:sticky; top:120px; }
+    .faq-aside-img { width:100%; aspect-ratio:3/4; object-fit:cover; object-position:top; filter:saturate(.7) contrast(1.1); }
+    .faq-item { border-bottom:1px solid rgba(232,234,240,.07); }
+    .faq-q { display:flex; justify-content:space-between; align-items:flex-start; padding:28px 0; cursor:pointer; gap:20px; font-family:var(--serif); font-size:21px; font-weight:400; line-height:1.35; }
+    .faq-q:hover { color:var(--gold); }
+    .faq-ico { font-size:22px; color:var(--gold); flex-shrink:0; margin-top:2px; transition:transform .3s; }
+    .faq-item.open .faq-ico { transform:rotate(45deg); }
+    .faq-a { display:none; padding-bottom:28px; font-size:15px; color:var(--text2); line-height:1.8; max-width:640px; }
+    .faq-item.open .faq-a { display:block; }
+    @media(max-width:1024px){ .faq-cols{grid-template-columns:1fr;} .faq-aside{display:none;} }
+
+    .testi-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:rgba(232,234,240,.04); }
+    .testi { background:var(--void); padding:36px 28px; transition:background .3s; }
+    .testi:hover { background:var(--card); }
+    .testi-stars { color:var(--gold); font-size:12px; letter-spacing:2px; margin-bottom:20px; }
+    .testi-q { font-family:var(--serif); font-size:18px; font-weight:400; font-style:italic; line-height:1.6; color:var(--text); margin-bottom:24px; }
+    .testi-name { font-size:14px; font-weight:600; }
+    .testi-role { font-family:var(--mono); font-size:10px; color:var(--text3); margin-top:3px; }
+    @media(max-width:768px){ .testi-grid{grid-template-columns:1fr;} }
+
+    .cta-final { padding:140px 0; text-align:center; position:relative; overflow:hidden; }
+    .cta-final::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 90% 70% at 50% 50%,rgba(240,180,41,.06),transparent 70%); }
+    .cta-ey { font-family:var(--mono); font-size:10.5px; letter-spacing:.22em; text-transform:uppercase; color:var(--gold); margin-bottom:24px; }
+    .cta-h { font-family:var(--serif); font-size:clamp(38px,6vw,72px); font-weight:900; line-height:1; margin-bottom:24px; }
+    .cta-h em { font-style:italic; font-weight:400; color:var(--gold); }
+    .cta-sub { font-size:18px; color:var(--text2); max-width:520px; margin:0 auto 56px; }
+    .cta-btns { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
+
+    footer { background:var(--surface); border-top:1px solid rgba(232,234,240,.05); padding:72px 0 44px; }
+    .ft-grid { display:grid; grid-template-columns:2fr 1fr 1fr; gap:60px; margin-bottom:56px; }
+    .ft-brand { font-family:var(--serif); font-size:28px; font-weight:900; letter-spacing:-.02em; margin-bottom:14px; }
+    .ft-brand em { font-style:italic; color:var(--gold); }
+    .ft-desc { font-size:14px; color:var(--text3); line-height:1.75; max-width:340px; }
+    .ft-ch { font-family:var(--mono); font-size:9.5px; letter-spacing:.22em; text-transform:uppercase; color:var(--gold); margin-bottom:20px; }
+    .ft-links { list-style:none; display:flex; flex-direction:column; gap:12px; }
+    .ft-links a { font-size:14px; color:var(--text3); transition:color .2s; }
+    .ft-links a:hover { color:var(--gold); }
+    .ft-bottom { border-top:1px solid rgba(232,234,240,.05); padding-top:28px; display:flex; justify-content:space-between; align-items:center; }
+    .ft-copy { font-family:var(--mono); font-size:12px; color:var(--text3); }
+    .ft-risk { font-size:11px; color:var(--text3); max-width:480px; text-align:right; line-height:1.55; }
+    @media(max-width:768px){ .ft-grid{grid-template-columns:1fr;gap:32px;} .ft-bottom{flex-direction:column;gap:16px;text-align:center;} .ft-risk{text-align:center;} }
+
+
+    /* ── SERVICE CARDS ─── */
+    .svc-section-hd { text-align:center; max-width:700px; margin:0 auto 60px; }
+    .svc-section-sub { font-size:16px; color:var(--text2); line-height:1.75; margin-top:16px; }
+    .svc-cards-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:rgba(232,234,240,.04); margin-bottom:1px; }
+    .svc-card { background:var(--void); display:flex; flex-direction:column; overflow:hidden; transition:background .3s; }
+    .svc-card:hover { background:var(--card); }
+    .svc-card-img { width:100%; aspect-ratio:4/3; object-fit:cover; filter:saturate(.7) contrast(1.1); display:block; }
+    .svc-card-body { padding:24px 28px; flex:1; display:flex; flex-direction:column; }
+    .svc-card-stars { color:var(--gold); font-size:13px; margin-bottom:10px; }
+    .svc-card-trader { font-family:var(--mono); font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--gold); margin-bottom:12px; }
+    .svc-card-title { font-family:var(--serif); font-size:20px; font-weight:700; margin-bottom:10px; }
+    .svc-card-desc { font-size:13.5px; color:var(--text2); line-height:1.65; flex:1; margin-bottom:20px; }
+    .svc-card-link { font-family:var(--mono); font-size:11px; font-weight:500; letter-spacing:.12em; text-transform:uppercase; color:var(--gold); display:inline-flex; align-items:center; gap:6px; transition:gap .2s; }
+    .svc-card-link:hover { gap:10px; }
+    .bot-card { background:var(--card); border:1px solid var(--gold-border); padding:56px 48px; display:grid; grid-template-columns:1fr 1fr; align-items:center; gap:60px; margin-top:1px; }
+    .bot-sup { font-family:var(--mono); font-size:10.5px; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); margin-bottom:16px; }
+    .bot-title { font-family:var(--serif); font-size:clamp(40px,5vw,68px); font-weight:900; line-height:.95; letter-spacing:-.03em; color:var(--text); margin-bottom:20px; }
+    .bot-claim { font-family:var(--mono); font-size:13px; letter-spacing:.06em; color:var(--text2); line-height:1.6; margin-bottom:32px; }
+    .bot-img { width:100%; aspect-ratio:1; object-fit:cover; object-position:top; filter:saturate(.7) contrast(1.1); clip-path:polygon(0 0,calc(100% - 16px) 0,100% 16px,100% 100%,16px 100%,0 calc(100% - 16px)); }
+    @media(max-width:1024px){ .svc-cards-grid{grid-template-columns:repeat(2,1fr);} .bot-card{grid-template-columns:1fr;gap:32px;padding:40px 32px;} }
+    @media(max-width:600px){ .svc-cards-grid{grid-template-columns:1fr;} }
+
+    .wa { position:fixed; bottom:32px; right:32px; z-index:900; width:54px; height:54px; background:#25D366; display:flex; align-items:center; justify-content:center; font-size:24px; clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px)); box-shadow:0 4px 24px rgba(37,211,102,.35); transition:transform .2s; }
+    .wa:hover { transform:scale(1.08); }
+  </style>
+</head>
+<body>
+  <div id="cd"></div><div id="cr"></div>
+  <div class="atmos ag"></div><div class="atmos ae"></div>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="#" class="nav-logo">
+          <div class="nav-mark">FX</div>
+          <div class="nav-name">FX<span>-BSC</span></div>
+        </a>
+        <div class="nav-links" id="nl">
+          <a href="#inicio">Inicio</a>
+          <a href="#sobre">Miyerlay</a>
+          <a href="#servicios">Servicios</a>
+          <a href="#faq">FAQ</a>
+          <a href="#testimonios">Testimonios</a>
+          <a href="https://t.me/Fxbasic_entradastrading" class="nav-cta" target="_blank" rel="noopener">Unirse ▸</a>
+        </div>
+        <button class="nav-mob" id="nm">&#9776;</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- TICKER -->
+  <div class="ticker">
+    <div class="tick-track">
+      <div class="tick-item"><b>EURUSD</b><span class="ts"> | </span>1.0823 ▲</div>
+      <div class="tick-item"><b>BTCUSDT</b><span class="ts"> | </span>68,420 ▲</div>
+      <div class="tick-item"><b>GBPUSD</b><span class="ts"> | </span>1.2701 ▼</div>
+      <div class="tick-item"><b>ETHUSDT</b><span class="ts"> | </span>3,284 ▲</div>
+      <div class="tick-item"><b>XAUUSD</b><span class="ts"> | </span>2,340 ▲</div>
+      <div class="tick-item"><b>Índices Sint.</b><span class="ts"> | </span>Operativa diaria</div>
+      <div class="tick-item"><b>EURUSD</b><span class="ts"> | </span>1.0823 ▲</div>
+      <div class="tick-item"><b>BTCUSDT</b><span class="ts"> | </span>68,420 ▲</div>
+      <div class="tick-item"><b>GBPUSD</b><span class="ts"> | </span>1.2701 ▼</div>
+      <div class="tick-item"><b>ETHUSDT</b><span class="ts"> | </span>3,284 ▲</div>
+      <div class="tick-item"><b>XAUUSD</b><span class="ts"> | </span>2,340 ▲</div>
+      <div class="tick-item"><b>Índices Sint.</b><span class="ts"> | </span>Operativa diaria</div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="sec" id="inicio" style="padding-top:60px;padding-bottom:40px;">
+    <div class="container">
+      <div class="hero-wrap">
+        <div>
+          <div class="hero-num sr">FX-BSC — Academia de Trading</div>
+          <div class="hero-headline sr sr-d1">
+            <h1 class="h-display">Opera los<br>mercados con<br><em>método real.</em></h1>
+          </div>
+          <p class="hero-sub sr sr-d2">Miyerlay Murillo te guía paso a paso en Forex, Criptomonedas e Índices Sintéticos. Desde análisis técnico hasta operativa en vivo y cursos certificados.</p>
+          <div class="hero-cta sr sr-d3">
+            <a href="https://t.me/Fxbasic_entradastrading" class="btn-gold" target="_blank" rel="noopener">Canal Gratuito ▸</a>
+            <a href="#servicios" class="btn-frame">Ver Servicios</a>
+          </div>
+          <div class="hero-stats sr sr-d4">
+            <div class="hs"><div class="hs-v" data-count="50">0</div><div class="hs-l">+Alumnos</div></div>
+            <div class="hs"><div class="hs-v">80%</div><div class="hs-l">Efectividad MIYE</div></div>
+            <div class="hs"><div class="hs-v">40</div><div class="hs-l">Días al éxito</div></div>
+          </div>
+        </div>
+        <div class="hero-right sr sr-d2">
+          <div class="hero-img-wrap">
+            <div class="hero-frame"></div>
+            <img src="https://www.fx-bsc.com/wp-content/uploads/2025/08/miyerlay1.png" alt="Miyerlay Murillo Gómez" loading="eager" />
+            <div class="hf hf-tl">
+              <div class="hf-v">+50</div>
+              <div class="hf-l">Alumnos online</div>
+            </div>
+            <div class="hf hf-br">
+              <div class="hf-v">7 años</div>
+              <div class="hf-l">En los mercados</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE MIYERLAY -->
+  <section class="sec sec-dark" id="sobre">
+    <div class="container">
+      <div class="about-layout">
+        <div class="about-img-wrap sr">
+          <img class="about-img" src="https://www.fx-bsc.com/wp-content/uploads/2025/08/Miyerlay3.png" alt="Miyerlay Murillo Gómez" />
+          <div class="about-overlay">
+            <p>Miyerlay Murillo Gómez · Trader Profesional · Mentora</p>
+          </div>
+        </div>
+        <div class="sr sr-d1">
+          <div class="chip">Mi Perfil</div>
+          <blockquote class="about-quote">
+            "El trading no es suerte.<br><strong>Es disciplina, método y el mentor correcto.</strong>"
+          </blockquote>
+          <div class="about-line"></div>
+          <p class="body-md" style="margin-bottom:24px;">Soy Miyerlay Murillo Gómez, Trader Profesional con formación en Química Pura, Ingeniería de Producción y Máster en Blockchain y Finanzas Descentralizadas.</p>
+          <div class="credentials">
+            <div class="cred-item">17 años de experiencia en procesos industriales</div>
+            <div class="cred-item">12 años como intermediaria financiera</div>
+            <div class="cred-item">7 años operando en los mercados financieros</div>
+            <div class="cred-item">Máster en Blockchain y Finanzas Descentralizadas</div>
+            <div class="cred-item">Proyectos de NFTs con fines sociales — niños con cáncer</div>
+          </div>
+          <a href="#servicios" class="btn-gold">Ver Servicios ▸</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VENTAJAS -->
+  <section class="sec" id="ventajas">
+    <div class="container">
+      <div class="sec-hd sr" style="max-width:680px;">
+        <div class="chip">Por Qué FX-BSC</div>
+        <h2 class="h-section">Todo lo que necesitas<br>para operar con <em>éxito.</em></h2>
+      </div>
+      <div class="vnt-grid">
+        <div class="vnt sr" data-n="1"><div class="vnt-icon">📈</div><h3 class="vnt-title">Cursos Estructurados</h3><p class="vnt-desc">Desde conceptos básicos hasta estrategias avanzadas en Forex, Criptomonedas e Índices Sintéticos.</p></div>
+        <div class="vnt sr sr-d1" data-n="2"><div class="vnt-icon">🎯</div><h3 class="vnt-title">Operativa en Vivo</h3><p class="vnt-desc">De martes a viernes en sesión Nueva York y sesión Asiática. Aprende viendo operar en tiempo real.</p></div>
+        <div class="vnt sr sr-d2" data-n="3"><div class="vnt-icon">🧠</div><h3 class="vnt-title">Psicotrading</h3><p class="vnt-desc">Trabaja la psicología del trading y tu relación con el dinero para operar con disciplina y consistencia.</p></div>
+        <div class="vnt sr" data-n="4"><div class="vnt-icon">🤖</div><h3 class="vnt-title">Plantilla MIYE Automática</h3><p class="vnt-desc">Herramienta de trading automático con más del 80% de efectividad para Forex y cualquier nivel de experiencia.</p></div>
+        <div class="vnt sr sr-d1" data-n="5"><div class="vnt-icon">🏦</div><h3 class="vnt-title">Cuentas de Fondeo</h3><p class="vnt-desc">Preparación específica para superar challenges y operar con capital de firmas fondeadoras. Cuenta $10K incluida en Plan Gold.</p></div>
+        <div class="vnt sr sr-d2" data-n="6"><div class="vnt-icon">🔗</div><h3 class="vnt-title">Blockchain & NFTs</h3><p class="vnt-desc">Creación de NFTs, desarrollo blockchain y proyecto social de NFTs diseñados por niños con cáncer.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section class="sec sec-surf" id="servicios">
+    <div class="container">
+      <div class="svc-section-hd sr">
+        <div class="chip">Servicios</div>
+        <h2 class="h-section">Todo lo que necesitas para<br><em>dominar el trading.</em></h2>
+        <p class="svc-section-sub">Nuestros programas están diseñados para guiarte en cada etapa: desde los primeros pasos hasta la operativa en vivo. Con herramientas prácticas, planes personalizados y estrategias probadas.</p>
+      </div>
+      <div class="svc-cards-grid">
+        <div class="svc-card sr">
+          <img class="svc-card-img" src="https://www.fx-bsc.com/wp-content/uploads/2025/08/1.png" alt="Cursos de Trading" loading="lazy" />
+          <div class="svc-card-body">
+            <div class="svc-card-stars">★★★★☆</div>
+            <div class="svc-card-trader">Trader : Miyerlay</div>
+            <h3 class="svc-card-title">Cursos de trading</h3>
+            <p class="svc-card-desc">Desde lo básico hasta estrategias avanzadas. Aprende con un método práctico, estructurado y orientado a resultados reales en los mercados financieros.</p>
+            <a href="#contacto" class="svc-card-link">INGRESA →</a>
+          </div>
+        </div>
+        <div class="svc-card sr sr-d1">
+          <img class="svc-card-img" src="https://www.fx-bsc.com/wp-content/uploads/2025/08/2.png" alt="Trading Personalizado" loading="lazy" />
+          <div class="svc-card-body">
+            <div class="svc-card-stars">★★★★★</div>
+            <div class="svc-card-trader">Trader : Miyerlay</div>
+            <h3 class="svc-card-title">Trading Personalizado</h3>
+            <p class="svc-card-desc">No todos los traders son iguales. Diseñamos contigo un plan adaptado a tu estilo, objetivos y nivel de experiencia para que operes con claridad y seguridad.</p>
+            <a href="#contacto" class="svc-card-link">INGRESA →</a>
+          </div>
+        </div>
+        <div class="svc-card sr sr-d2">
+          <img class="svc-card-img" src="https://www.fx-bsc.com/wp-content/uploads/2025/08/miyerlay1.png" alt="Cuentas de Fondeo" loading="lazy" />
+          <div class="svc-card-body">
+            <div class="svc-card-stars">★★★★☆</div>
+            <div class="svc-card-trader">Trader : Miyerlay</div>
+            <h3 class="svc-card-title">Cuentas de fondeo</h3>
+            <p class="svc-card-desc">Prepárate para superar los retos de las cuentas de fondeo y consigue capital de inversión. Te guiamos paso a paso para operar con confianza y disciplina.</p>
+            <a href="https://dashboard.htrader.com/purchasechallenge?affiliateId=486" class="svc-card-link" target="_blank" rel="noopener">INGRESA →</a>
+          </div>
+        </div>
+        <div class="svc-card sr">
+          <img class="svc-card-img" src="https://www.fx-bsc.com/wp-content/uploads/2025/08/3.png" alt="Operativa en Vivo" loading="lazy" />
+          <div class="svc-card-body">
+            <div class="svc-card-stars">★★★★☆</div>
+            <div class="svc-card-trader">Trader : Miyerlay</div>
+            <h3 class="svc-card-title">Operativa en vivo</h3>
+            <p class="svc-card-desc">Aprende en tiempo real cómo toman decisiones los traders profesionales. Accede a sesiones en vivo y entiende la lógica detrás de cada operación.</p>
+            <a href="#contacto" class="svc-card-link">INGRESA →</a>
+          </div>
+        </div>
+        <div class="svc-card sr sr-d1">
+          <img class="svc-card-img" src="https://www.fx-bsc.com/wp-content/uploads/2025/08/4.png" alt="Plantillas" loading="lazy" />
+          <div class="svc-card-body">
+            <div class="svc-card-stars">★★★★★</div>
+            <div class="svc-card-trader">Trader : Miyerlay</div>
+            <h3 class="svc-card-title">Plantillas automáticas para operar</h3>
+            <p class="svc-card-desc">Ahorra tiempo y reduce errores con plantillas listas para usar en tus análisis y entradas al mercado. Más del 80% de efectividad comprobada.</p>
+            <a href="#contacto" class="svc-card-link">INGRESA →</a>
+          </div>
+        </div>
+      </div>
+      <!-- BOT DE TRADING -->
+      <div class="bot-card sr">
+        <div>
+          <div class="bot-sup">Para Índices Sintéticos · Incluyendo todos los mercados</div>
+          <h2 class="bot-title">BOT DE<br>TRADING</h2>
+          <p class="bot-claim">SI NO SABES O NO TIENES TIEMPO PARA HACER TRADING,<br>MI BOT LO HACE POR TI.</p>
+          <a href="https://wa.link/zt87uj" class="btn-gold" target="_blank" rel="noopener">INGRESAR AQUÍ ▸</a>
+        </div>
+        <img class="bot-img" src="https://www.fx-bsc.com/wp-content/uploads/2025/08/Miyerlay3.png" alt="Bot de Trading" loading="lazy" />
+      </div>
+    </div>
+  </section>
+
+    <!-- STATS -->
+  <div class="stats-band">
+    <div class="container" style="padding:0;">
+      <div class="stats-row">
+        <div class="sc sr"><div class="sc-n" data-count="50">0</div><div class="sc-l">+Alumnos Online</div></div>
+        <div class="sc sr sr-d1"><div class="sc-n">80%</div><div class="sc-l">Efectividad Plantilla</div></div>
+        <div class="sc sr sr-d2"><div class="sc-n">7</div><div class="sc-l">Años en Mercados</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <section class="sec sec-dark" id="faq">
+    <div class="container">
+      <div class="sec-hd sr" style="max-width:680px;margin-bottom:56px;">
+        <div class="chip">Preguntas Frecuentes</div>
+        <h2 class="h-section">Tus preguntas,<br><em>respondidas.</em></h2>
+      </div>
+      <div class="faq-cols">
+        <div class="faq-aside sr">
+          <img class="faq-aside-img" src="https://www.fx-bsc.com/wp-content/uploads/2025/08/miyerlay1.png" alt="Miyerlay" loading="lazy" />
+        </div>
+        <div>
+          <div class="faq-item sr">
+            <div class="faq-q"><span>¿Necesito experiencia previa para unirme?</span><span class="faq-ico">+</span></div>
+            <div class="faq-a">No. Los programas están diseñados para principiantes y traders con experiencia. Partimos desde los conceptos más básicos hasta estrategias avanzadas para que cualquier persona pueda aprender a operar de manera rentable y consistente.</div>
+          </div>
+          <div class="faq-item sr">
+            <div class="faq-q"><span>¿Las clases son en vivo o grabadas?</span><span class="faq-ico">+</span></div>
+            <div class="faq-a">Contamos con clases en vivo para interactuar directamente con la mentora, más acceso a material grabado que puedes revisar en cualquier momento. Lo mejor de ambos mundos: interacción en tiempo real y flexibilidad de horarios.</div>
+          </div>
+          <div class="faq-item sr">
+            <div class="faq-q"><span>¿Puedo practicar con cuenta demo antes de invertir capital real?</span><span class="faq-ico">+</span></div>
+            <div class="faq-a">Sí. Fomentamos la práctica segura. Tendrás acceso a cuentas demo para aplicar las estrategias sin arriesgar tu capital. Solo cuando tengas consistencia demostrada, te guiamos hacia cuentas reales o cuentas fondeadas.</div>
+          </div>
+          <div class="faq-item sr">
+            <div class="faq-q"><span>¿En qué horario son las operativas en vivo?</span><span class="faq-ico">+</span></div>
+            <div class="faq-a">De martes a viernes en la sesión de Nueva York y algunas veces en la sesión Asiática. Los horarios exactos se comunican con anticipación en el grupo de Telegram para que puedas conectarte a tiempo.</div>
+          </div>
+          <div class="faq-item sr">
+            <div class="faq-q"><span>¿Qué incluye el Plan Gold de $1,199 USD?</span><span class="faq-ico">+</span></div>
+            <div class="faq-a">El Plan Gold incluye 4 semanas intensivas con tutor personal, 3 estrategias Forex, 3 estrategias de criptomonedas, 1 estrategia de índices sintéticos, y una cuenta fondeada de $10,000 USD para operar con capital real desde el primer día.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIOS -->
+  <section class="sec" id="testimonios">
+    <div class="container">
+      <div class="sec-hdc sr">
+        <div class="chip">Testimonios</div>
+        <h2 class="h-section">Lo que dicen<br>nuestros <em>estudiantes.</em></h2>
+      </div>
+      <div class="testi-grid">
+        <div class="testi sr">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-q">"Gracias a MIYERLAY entendí cómo funciona el mercado paso a paso. Sus clases son claras y prácticas, ahora opero con más seguridad."</p>
+          <div class="testi-name">Piero Ruíz</div>
+          <div class="testi-role">Estudiante FX-BSC</div>
+        </div>
+        <div class="testi sr sr-d1">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-q">"Nunca pensé que podía aprender trading desde cero. Con FX-BSC logré tener resultados consistentes en poco tiempo."</p>
+          <div class="testi-name">Eduardo Ríos</div>
+          <div class="testi-role">Estudiante FX-BSC</div>
+        </div>
+        <div class="testi sr sr-d2">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-q">"La forma en que MIYERLAY explica las estrategias me ayudó a dejar de cometer errores comunes y mejorar mi rentabilidad."</p>
+          <div class="testi-name">Fabricio Sanchez</div>
+          <div class="testi-role">Estudiante FX-BSC</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="cta-final" id="contacto">
+    <div class="container">
+      <p class="cta-ey sr">Únete a FX-BSC</p>
+      <h2 class="cta-h sr sr-d1">Tu camino<br>empieza <em>hoy.</em></h2>
+      <p class="cta-sub sr sr-d2">Únete a nuestro canal de Telegram gratuito y comienza a aprender Forex, Criptomonedas e Índices Sintéticos con Miyerlay Murillo.</p>
+      <div class="cta-btns sr sr-d3">
+        <a href="https://t.me/Fxbasic_entradastrading" class="btn-gold" target="_blank" rel="noopener">Canal Gratuito ▸</a>
+        <a href="https://wa.link/zt87uj" class="btn-frame" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="ft-grid">
+        <div>
+          <div class="ft-brand">FX<em>-BSC</em></div>
+          <p class="ft-desc">Academia de trading fundada por Miyerlay Murillo Gómez. Especializada en Forex, Criptomonedas e Índices Sintéticos. Formación práctica desde cero.</p>
+        </div>
+        <div>
+          <p class="ft-ch">Servicios</p>
+          <ul class="ft-links">
+            <li><a href="https://www.fx-bsc.com/cursos-de-trading/" target="_blank" rel="noopener">Plan Gold — Cursos</a></li>
+            <li><a href="https://www.fx-bsc.com/trading-personalizado/" target="_blank" rel="noopener">Trader Rentable 40 Días</a></li>
+            <li><a href="https://www.fx-bsc.com/operativa/" target="_blank" rel="noopener">Operativa en Vivo</a></li>
+            <li><a href="https://www.fx-bsc.com/plantillas/" target="_blank" rel="noopener">Plantillas de Trading</a></li>
+            <li><a href="https://www.fx-bsc.com/criptos-y-nfts/" target="_blank" rel="noopener">Criptos & NFTs</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="ft-ch">Contacto</p>
+          <ul class="ft-links">
+            <li><a href="https://t.me/Fxbasic_entradastrading" target="_blank" rel="noopener">Telegram</a></li>
+            <li><a href="https://wa.link/zt87uj" target="_blank" rel="noopener">WhatsApp</a></li>
+            <li><a href="https://www.instagram.com/miyemurillo" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a href="https://youtube.com/@traderrentable1" target="_blank" rel="noopener">YouTube</a></li>
+            <li><a href="https://www.linkedin.com/in/miyerlay-gomez-065933b7" target="_blank" rel="noopener">LinkedIn</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="ft-bottom">
+        <p class="ft-copy">© 2024 FX-BSC · Miyerlay Murillo Gómez</p>
+        <p class="ft-risk">El trading implica riesgo de pérdida de capital. El rendimiento pasado no garantiza resultados futuros. Solo invierte lo que puedas permitirte perder.</p>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/573242579229" class="wa" target="_blank" rel="noopener" aria-label="WhatsApp">&#128241;</a>
+
+  <script>
+    const dot=document.getElementById('cd'),ring=document.getElementById('cr');
+    let mx=-100,my=-100,rx=-100,ry=-100;
+    document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
+    (function loop(){rx+=(mx-rx)*.15;ry+=(my-ry)*.15;dot.style.left=mx+'px';dot.style.top=my+'px';ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(loop);})();
+    document.querySelectorAll('a,button,.faq-q').forEach(el=>{el.addEventListener('mouseenter',()=>document.body.classList.add('ch'));el.addEventListener('mouseleave',()=>document.body.classList.remove('ch'));});
+    window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('scrolled',window.scrollY>40));
+    document.getElementById('nm').addEventListener('click',()=>document.getElementById('nl').classList.toggle('open'));
+    const sr=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');sr.unobserve(e.target);}});},{threshold:.07,rootMargin:'0px 0px -40px 0px'});
+    document.querySelectorAll('.sr').forEach(el=>sr.observe(el));
+    function animCount(el,t){const d=2000,s=performance.now();const f=n=>{const p=Math.min((n-s)/d,1),e=1-Math.pow(1-p,4);el.textContent=Math.floor(e*t).toLocaleString('es');if(p<1)requestAnimationFrame(f);else el.textContent=t+'+';};requestAnimationFrame(f);}
+    const co=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){const t=parseInt(e.target.dataset.count);if(!isNaN(t))animCount(e.target,t);co.unobserve(e.target);}});},{threshold:.4});
+    document.querySelectorAll('[data-count]').forEach(el=>co.observe(el));
+    document.querySelectorAll('.faq-q').forEach(q=>{q.addEventListener('click',()=>{const i=q.parentElement,w=i.classList.contains('open');document.querySelectorAll('.faq-item').forEach(x=>x.classList.remove('open'));if(!w)i.classList.add('open');});});
+    window.addEventListener('scroll',()=>{const p=window.scrollY/(document.body.scrollHeight-window.innerHeight);document.querySelector('.ag').style.opacity=.05+p*.03;document.querySelector('.ae').style.opacity=.04+p*.04;},{passive:true});
+  </script>
+</body>
+</html>
